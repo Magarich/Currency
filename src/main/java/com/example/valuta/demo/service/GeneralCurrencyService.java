@@ -21,7 +21,10 @@ public class GeneralCurrencyService {
     private final MonobankCurrencyService monobankCurrencyService;
     private final PrivatCurrencyService privatCurrencyService;
 
-    public Currency getCurrency() {
+    public Currency getCurrency(String[] banks, String[] currs) {
+
+
+
         Currency currency = new Currency();
         currency.setDate(new Date());
         Map<String, List<BankModel>> sources = new HashMap<>();
@@ -38,9 +41,28 @@ public class GeneralCurrencyService {
                 }
             }
         }*/
+        if("def".equals(banks[0])) {
+            sources.put(monobankCurrencyService.getBankName(), monobankCurrencyService.getCurrentCurrencies(currs));
+            sources.put(privatCurrencyService.getBankName(), privatCurrencyService.getCurrentCurrencies(currs));
+        }
 
-        sources.put(monobankCurrencyService.getBankName(), monobankCurrencyService.getCurrentCurrencies());
-        sources.put(privatCurrencyService.getBankName(), privatCurrencyService.getCurrentCurrencies());
+            for (String bank : banks) {
+                switch (bank) {
+                    case ("privat"):
+                        sources.put(privatCurrencyService.getBankName(), privatCurrencyService.getCurrentCurrencies(currs));
+                        break;
+                    case ("mono"):
+                        sources.put(monobankCurrencyService.getBankName(), monobankCurrencyService.getCurrentCurrencies(currs));
+                        break;
+                    default:
+                        sources.put(monobankCurrencyService.getBankName(), monobankCurrencyService.getCurrentCurrencies(currs));
+                        sources.put(privatCurrencyService.getBankName(), privatCurrencyService.getCurrentCurrencies(currs));
+
+                }
+            }
+
+
+
 
 
 //        Reflections reflections = new Reflections("com.example.valuta.demo.service.impl");

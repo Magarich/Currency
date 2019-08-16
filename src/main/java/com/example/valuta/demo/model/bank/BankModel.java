@@ -1,6 +1,6 @@
 package com.example.valuta.demo.model.bank;
 
-public interface BankModel<MODEL> {
+public interface BankModel {
 
     String getFrom();
     String getTo();

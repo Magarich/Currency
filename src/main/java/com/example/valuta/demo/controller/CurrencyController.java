@@ -14,7 +14,8 @@ public class CurrencyController {
     private final GeneralCurrencyService generalCurrencyService;
 
     @GetMapping("/currency")
-    public Currency getCurrency(){
-        return generalCurrencyService.getCurrency();
+    public Currency getCurrency(@RequestParam(name = "name", defaultValue = "def") String[] banks,
+                                @RequestParam(name = "currency", defaultValue = "def") String[] currency){
+        return generalCurrencyService.getCurrency(banks, currency);
     }
 }
