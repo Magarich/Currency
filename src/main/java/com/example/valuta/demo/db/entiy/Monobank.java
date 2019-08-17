@@ -14,10 +14,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 //Jpa
 @Entity //(сущность)вот это клас будет мапиться на таблицу
-@Table(name = "devices") //
+@Table(name = "monobank") //
 public class Monobank {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
