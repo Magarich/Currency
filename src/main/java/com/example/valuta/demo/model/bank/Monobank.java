@@ -6,20 +6,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Optional;
 
 @Data
-//@Entity
-///@Table("monobank")
+//@Table(name = "monobank")
+//@Entity//(сущность)вот это клас будет мапиться на таблицу
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Monobank implements BankModel {
 
     @JsonIgnore
-   // @Column(name = "date")
+    @Column(name = "date")
     private Date date;
 
-  //  @Column(name = "from")
     @JsonProperty("currencyCodeA")
     private String from;
 
